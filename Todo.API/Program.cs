@@ -12,6 +12,7 @@ namespace Todo.API
             builder.AddIdentity();
             builder.AddAuthentication();
             builder.AddHttpContextAccessor();
+            builder.AddBackgroundJobs();
             builder.AddScopedServices();
             builder.AddControllers();
             builder.AddEndpointsApiExplorer();
@@ -26,7 +27,7 @@ namespace Todo.API
                 app.UseSwaggerUI();
             }
 
-
+            app.UseMiddleware<CustomExeptionHandlerMiddleware>();
             app.UseHttpsRedirection();
             app.UseCors(builder.Configuration.GetValue<string>("Cors:AllowOrigin"));
             app.UseAuthentication();
