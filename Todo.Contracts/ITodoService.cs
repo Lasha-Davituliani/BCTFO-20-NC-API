@@ -4,14 +4,10 @@ namespace Todo.Contracts
 {
     public interface ITodoService
     {
-        Task<List<TodoForGettingDto>> GetAllTodosAsync();
-        Task<TodoForGettingDto> GetSingleTodoAsync(int id);
-        Task<TodoForGettingDto> GetSingleTodoAsync(string userId, int id);
-        Task AddTodoAsync(TodoForCreatingDto model);
-        Task AddTodoAsync(TodoForCreatingDto model, string userId);
-        Task UpdateTodoAsync(TodoForUpdatingDto model);
-        Task DeleteTodoAsync(int id);
-        Task DeleteTodoAsync(string userId, int id);
-        Task<List<TodoForGettingDto>> GetUserTodosAsync(string userId);
+        Task<List<TodoForGettingDto>> GetTodosOfUserAsync(string userId);
+        Task<TodoForGettingDto> GetSingleTodoByUserId(int todoId, string userId);
+        Task DeleTeTodoAsync(int id);
+        Task AddTodoAsync(TodoForCreatingDto todoForCreatingDto);
+        Task UpdateTodoAsync(TodoForUpdatingDto todoForUpdatingDto);
     }
 }

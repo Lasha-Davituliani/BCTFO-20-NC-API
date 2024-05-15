@@ -21,43 +21,43 @@ namespace Todo.API.Controllers
 
 
 
-        [HttpGet]
-        public async Task<IActionResult> AllTodos()
-        {
-            try
-            {
-                var result = await _todoService.GetAllTodosAsync();
-
-                _response.Result = result;
-                _response.IsSuccess = true;
-                _response.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
-                _response.Message = "Request completed successfully";
-            }
-            catch (TodoNotFoundException ex)
-            {
-                _response.Result = null;
-                _response.IsSuccess = false;
-                _response.StatusCode = Convert.ToInt32(HttpStatusCode.NotFound);
-                _response.Message = ex.Message;
-            }
-            catch (Exception ex)
-            {
-                _response.Result = null;
-                _response.IsSuccess = false;
-                _response.StatusCode = Convert.ToInt32(HttpStatusCode.InternalServerError);
-                _response.Message = ex.Message;
-            }
-
-            return StatusCode(_response.StatusCode, _response);
-        }
-
         [HttpGet("{userId}")]
-        [Authorize]
-        public async Task<IActionResult> GetUserTodosAsync(string userId)
+        public async Task<IActionResult> AllTodosOfUser([FromRoute] string userId)
         {
             try
             {
-                var result = await _todoService.GetUserTodosAsync(userId);
+                var result = await _todoService.GetTodosOfUserAsync(userId);
+
+                _response.Result = result;
+                _response.IsSuccess = true;
+                _response.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
+                _response.Message = "Request completed successfully";
+            }
+            catch (TodoNotFoundException ex)
+            {
+                _response.Result = null;
+                _response.IsSuccess = false;
+                _response.StatusCode = Convert.ToInt32(HttpStatusCode.NotFound);
+                _response.Message = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                _response.Result = null;
+                _response.IsSuccess = false;
+                _response.StatusCode = Convert.ToInt32(HttpStatusCode.InternalServerError);
+                _response.Message = ex.Message;
+            }
+
+            return StatusCode(_response.StatusCode, _response);
+        }
+
+        [HttpGet("{userId}/ {todoId}")]
+        [Authorize]
+        public async Task<IActionResult> SingleTodoOfUser([FromRoute] string userId , [FromRoute] int todoId )
+        {
+            try
+            {
+                var result = await _todoService.GetSingleTodoByUserId(todoId, userId);
 
                 _response.Result = result;
                 _response.IsSuccess = true;
@@ -81,45 +81,43 @@ namespace Todo.API.Controllers
             return StatusCode(_response.StatusCode, _response);
         }
 
-        [HttpGet("{userId}/{id}")]
-        [Authorize]
-        public async Task<IActionResult> GetSingleTodoAsync(string userId, int id)
+        [HttpPost]
+        public async Task<IActionResult> AddTodo([FromBody] TodoForCreatingDto model)
         {
             try
             {
-                var result = await _todoService.GetSingleTodoAsync(userId, id);
-
-                _response.Result = result;
-                _response.IsSuccess = true;
-                _response.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
-                _response.Message = "Request completed successfully";
-            }
-            catch (TodoNotFoundException ex)
-            {
-                _response.Result = null;
-                _response.IsSuccess = false;
-                _response.StatusCode = Convert.ToInt32(HttpStatusCode.NotFound);
-                _response.Message = ex.Message;
-            }
-            catch (Exception ex)
-            {
-                _response.Result = null;
-                _response.IsSuccess = false;
-                _response.StatusCode = Convert.ToInt32(HttpStatusCode.InternalServerError);
-                _response.Message = ex.Message;
-            }
-            return StatusCode(_response.StatusCode, _response);
-        }
-
-        [HttpPost("{userId}/{model}")]
-        [Authorize]
-        public async Task<IActionResult> AddTodoAsync(TodoForCreatingDto model, string userId)
-        {
-            try
-            {
-               await _todoService.AddTodoAsync(model, userId);
+                await _todoService.AddTodoAsync(model);
 
                 _response.Result = model;
+                _response.IsSuccess = true;
+                _response.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
+                _response.Message = "Request completed successfully";
+            }
+            catch (TodoNotFoundException ex)
+            {
+                _response.Result = null;
+                _response.IsSuccess = false;
+                _response.StatusCode = Convert.ToInt32(HttpStatusCode.NotFound);
+                _response.Message = ex.Message;
+            }
+            catch (Exception ex)
+            {
+                _response.Result = null;
+                _response.IsSuccess = false;
+                _response.StatusCode = Convert.ToInt32(HttpStatusCode.InternalServerError);
+                _response.Message = ex.Message;
+            }
+            return StatusCode(_response.StatusCode, _response);
+        }
+
+        [HttpDelete("{todoId}")]
+        public async Task<IActionResult> DeleteTodo([FromRoute] int todoId )
+        {
+            try
+            {
+               await _todoService.DeleTeTodoAsync(todoId);
+
+                _response.Result = todoId;
                 _response.IsSuccess = true;
                 _response.StatusCode = Convert.ToInt32(HttpStatusCode.OK);
                 _response.Message = "Request completed successfully";
