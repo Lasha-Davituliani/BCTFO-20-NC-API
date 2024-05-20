@@ -33,8 +33,8 @@ namespace Todo.Entities
         [Required]
         public Priority Priority { get; set; } = Priority.Medium;
 
-        [ForeignKey(nameof(IdentityUser))]
+        [ForeignKey(nameof(ApplicationUser))]
         public string UserId { get; set; }
-        public IdentityUser IdentityUser { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
     }
 }

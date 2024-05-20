@@ -16,8 +16,8 @@ namespace Todo.Service
                 config.CreateMap<TodoEntity, TodoForUpdatingDto>().ReverseMap();
                 config.CreateMap<TodoEntity, TodoForGettingDto>().ReverseMap();
 
-                config.CreateMap<UserDto, IdentityUser>().ReverseMap();
-                config.CreateMap<RegistrationRequestDto, IdentityUser>()
+                config.CreateMap<UserDto, ApplicationUser>().ReverseMap();
+                config.CreateMap<RegistrationRequestDto, ApplicationUser>()
                 .ForMember(destination => destination.UserName, options => options.MapFrom(source => source.Email))
                 .ForMember(destination => destination.NormalizedUserName, options => options.MapFrom(source => source.Email.ToUpper()))
                 .ForMember(destination => destination.Email, options => options.MapFrom(source => source.Email))

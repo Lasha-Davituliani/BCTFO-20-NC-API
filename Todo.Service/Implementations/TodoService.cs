@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using System.Security.Claims;
 using Todo.Contracts;
 using Todo.Entities;
@@ -12,12 +13,16 @@ namespace Todo.Service.Implementations
     {
         private readonly ITodoRepository _todoRepository;
         private readonly IMapper _mapper;
-        private readonly IHttpContextAccessor _httpContextAccessor;
+        private readonly IHttpContextAccessor _httpContextAccessor; 
+        private readonly UserManager<ApplicationUser> _userManager;
+     
+        
         public TodoService(ITodoRepository todoRepository, IHttpContextAccessor httpContextAccessor)
         {
             _todoRepository = todoRepository;
             _httpContextAccessor = httpContextAccessor;
             _mapper = MappingInitializer.Initialize();
+           
         }
 
         public async Task AddTodoAsync(TodoForCreatingDto todoForCreatingDto)
@@ -30,6 +35,11 @@ namespace Todo.Service.Implementations
 
             var result = _mapper.Map<TodoEntity>(todoForCreatingDto);
             await _todoRepository.AddTodoAsync(result);
+
+            var user = await _userManager.FindByIdAsync(todoForCreatingDto.UserId);
+            user.LastActivity = DateTime.UtcNow;
+            await _userManager.UpdateAsync(user);
+
             await _todoRepository.Save();
         }
 

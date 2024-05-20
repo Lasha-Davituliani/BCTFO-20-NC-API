@@ -6,6 +6,7 @@ using Microsoft.OpenApi.Models;
 using System.Text;
 using Todo.Contracts;
 using Todo.Data;
+using Todo.Entities;
 using Todo.Models.Identity;
 using Todo.Repositories;
 using Todo.Service.Implementations;
@@ -23,7 +24,7 @@ namespace Todo.API
         }
         public static void ConfigureJwtOptions(this WebApplicationBuilder builder) => builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
         public static void AddIdentity(this WebApplicationBuilder builder) => builder.Services
-            .AddIdentity<IdentityUser, IdentityRole>(options =>
+            .AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
                 options.Password.RequireDigit = false;
                 options.Password.RequireNonAlphanumeric = false;

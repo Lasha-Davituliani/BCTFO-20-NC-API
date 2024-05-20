@@ -5,6 +5,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 using Todo.Contracts;
+using Todo.Entities;
 using Todo.Models.Identity;
 
 namespace Todo.Service.Implementations
@@ -17,7 +18,7 @@ namespace Todo.Service.Implementations
             _jwtOptions = jwtOptions.Value;
         }
 
-        public string GenerateToken(IdentityUser applicationUser, IEnumerable<string> roles)
+        public string GenerateToken(ApplicationUser applicationUser, IEnumerable<string> roles)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(_jwtOptions.Secret);

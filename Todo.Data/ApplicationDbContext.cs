@@ -5,7 +5,7 @@ using Todo.Entities;
 
 namespace Todo.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<IdentityUser>
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions options) : base(options)
         {
@@ -22,5 +22,6 @@ namespace Todo.Data
         }
 
         public DbSet<TodoEntity> Todos { get; set; }
+        public DbSet<ApplicationUser> Users { get; set; }
     }
 }

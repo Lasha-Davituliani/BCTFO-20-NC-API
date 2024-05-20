@@ -29,5 +29,6 @@ namespace Todo.Models
 
         [Required]
         public string UserId { get; set; }
+
     }
 }

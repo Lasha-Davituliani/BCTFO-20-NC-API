@@ -88,124 +88,6 @@ namespace Todo.Data.Migrations
                     b.ToTable("AspNetRoleClaims", (string)null);
                 });
 
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasData(
-                        new
-                        {
-                            Id = "8716071C-1D9B-48FD-B3D0-F059C4FB8031",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "88c85038-eb9d-445c-8760-fd5c89d49c42",
-                            Email = "admin@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            NormalizedEmail = "ADMIN@GMAIL.COM",
-                            NormalizedUserName = "ADMIN@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEHDXWHz8u6CIYJgyXHk6E6x1ZnWpGca5FvhqdIA9e3SwLN1gNOaxT29yqJHJIyzYpQ==",
-                            PhoneNumber = "555337681",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "0eb57519-0c01-4491-b0a9-417146f3c5cb",
-                            TwoFactorEnabled = false,
-                            UserName = "admin@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "D514EDC9-94BB-416F-AF9D-7C13669689C9",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "b3d8daf2-9180-4402-98bb-343e89666e9d",
-                            Email = "nika@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            NormalizedEmail = "NIKA@GMAIL.COM",
-                            NormalizedUserName = "NIKA@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAEIGauBVoWN/Bk+vmcgcjv4bmhOejivL4NcbzcBpulrxNHgNWPad4FN0mHHxSOmyyJw==",
-                            PhoneNumber = "558490645",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "f2bfa1c6-b2cc-4199-80fc-3d66d5a83942",
-                            TwoFactorEnabled = false,
-                            UserName = "nika@gmail.com"
-                        },
-                        new
-                        {
-                            Id = "87746F88-DC38-4756-924A-B95CFF3A1D8A",
-                            AccessFailedCount = 0,
-                            ConcurrencyStamp = "1799cc55-cadf-4018-86dc-aaed85004c91",
-                            Email = "gio@gmail.com",
-                            EmailConfirmed = false,
-                            LockoutEnabled = true,
-                            NormalizedEmail = "GIO@GMAIL.COM",
-                            NormalizedUserName = "GIO@GMAIL.COM",
-                            PasswordHash = "AQAAAAIAAYagAAAAENDF+RlG0kBOPkl7OmZSmZcNcP0vq1E93+dX+P3R4FI1R2Ry1+2mLSaOWheR1v4YRg==",
-                            PhoneNumber = "551442269",
-                            PhoneNumberConfirmed = false,
-                            SecurityStamp = "595d2243-9d89-464f-b92e-899eaca32ffc",
-                            TwoFactorEnabled = false,
-                            UserName = "gio@gmail.com"
-                        });
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -304,6 +186,130 @@ namespace Todo.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Todo.Entities.ApplicationUser", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("LastActivity")
+                        .HasColumnType("datetime2");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
+
+                    b.HasData(
+                        new
+                        {
+                            Id = "8716071C-1D9B-48FD-B3D0-F059C4FB8031",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "c6771d5f-3068-42f3-8c88-50c8782d0f86",
+                            Email = "admin@gmail.com",
+                            EmailConfirmed = false,
+                            LastActivity = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LockoutEnabled = true,
+                            NormalizedEmail = "ADMIN@GMAIL.COM",
+                            NormalizedUserName = "ADMIN@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEPLX/nmxHfscwtZJXBlDYUTvlMWXgVDJ1eoOj/rHYJBfbkCTfmm3G94KiNh6gbAaLg==",
+                            PhoneNumber = "555337681",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0988f846-f22c-4e54-a238-3a35d9d248d7",
+                            TwoFactorEnabled = false,
+                            UserName = "admin@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "D514EDC9-94BB-416F-AF9D-7C13669689C9",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "7045f220-37e3-43fc-8bbe-64a367f81929",
+                            Email = "nika@gmail.com",
+                            EmailConfirmed = false,
+                            LastActivity = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LockoutEnabled = true,
+                            NormalizedEmail = "NIKA@GMAIL.COM",
+                            NormalizedUserName = "NIKA@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEOQGoNKzv8hv8SDCl7RewC+pDYgA8uwVFM/JZ37fm75FNgvgyPJ8TnIgLSecAV0vzg==",
+                            PhoneNumber = "558490645",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "c36dba05-a1e0-4701-9396-191f4ab68d5f",
+                            TwoFactorEnabled = false,
+                            UserName = "nika@gmail.com"
+                        },
+                        new
+                        {
+                            Id = "87746F88-DC38-4756-924A-B95CFF3A1D8A",
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0e66376f-50f5-4862-8c8f-aba1f8639746",
+                            Email = "gio@gmail.com",
+                            EmailConfirmed = false,
+                            LastActivity = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            LockoutEnabled = true,
+                            NormalizedEmail = "GIO@GMAIL.COM",
+                            NormalizedUserName = "GIO@GMAIL.COM",
+                            PasswordHash = "AQAAAAIAAYagAAAAEL3k0JDkOBMl+f02KtaHLd5MJV3ghyAy6SFbmI2vCpLZZ9MZCfxxxoUahDWLI9zZWQ==",
+                            PhoneNumber = "551442269",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f89b623e-a25c-4401-a293-8db295433df0",
+                            TwoFactorEnabled = false,
+                            UserName = "gio@gmail.com"
+                        });
+                });
+
             modelBuilder.Entity("Todo.Entities.TodoEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -347,9 +353,9 @@ namespace Todo.Data.Migrations
                         {
                             Id = 1,
                             Descrtiption = "პირველი საქმის აღწერა...",
-                            EndDate = new DateTime(2024, 5, 12, 2, 1, 3, 8, DateTimeKind.Local).AddTicks(1395),
+                            EndDate = new DateTime(2024, 5, 18, 1, 36, 58, 874, DateTimeKind.Local).AddTicks(1777),
                             Priority = 2,
-                            StartDate = new DateTime(2024, 5, 12, 1, 1, 3, 8, DateTimeKind.Local).AddTicks(1394),
+                            StartDate = new DateTime(2024, 5, 18, 0, 36, 58, 874, DateTimeKind.Local).AddTicks(1776),
                             Status = 1,
                             Title = "პირველი საქმე",
                             UserId = "87746F88-DC38-4756-924A-B95CFF3A1D8A"
@@ -358,9 +364,9 @@ namespace Todo.Data.Migrations
                         {
                             Id = 2,
                             Descrtiption = "მეორე საქმის აღწერა...",
-                            EndDate = new DateTime(2024, 5, 12, 2, 1, 3, 8, DateTimeKind.Local).AddTicks(1402),
+                            EndDate = new DateTime(2024, 5, 18, 1, 36, 58, 874, DateTimeKind.Local).AddTicks(1785),
                             Priority = 1,
-                            StartDate = new DateTime(2024, 5, 12, 1, 1, 3, 8, DateTimeKind.Local).AddTicks(1401),
+                            StartDate = new DateTime(2024, 5, 18, 0, 36, 58, 874, DateTimeKind.Local).AddTicks(1785),
                             Status = 1,
                             Title = "მეორე საქმე",
                             UserId = "D514EDC9-94BB-416F-AF9D-7C13669689C9"
@@ -369,9 +375,9 @@ namespace Todo.Data.Migrations
                         {
                             Id = 3,
                             Descrtiption = "მესამე საქმის აღწერა...",
-                            EndDate = new DateTime(2024, 5, 12, 6, 1, 3, 8, DateTimeKind.Local).AddTicks(1405),
+                            EndDate = new DateTime(2024, 5, 18, 5, 36, 58, 874, DateTimeKind.Local).AddTicks(1788),
                             Priority = 4,
-                            StartDate = new DateTime(2024, 5, 12, 1, 1, 3, 8, DateTimeKind.Local).AddTicks(1404),
+                            StartDate = new DateTime(2024, 5, 18, 0, 36, 58, 874, DateTimeKind.Local).AddTicks(1788),
                             Status = 2,
                             Title = "მესამე საქმე",
                             UserId = "D514EDC9-94BB-416F-AF9D-7C13669689C9"
@@ -380,9 +386,9 @@ namespace Todo.Data.Migrations
                         {
                             Id = 4,
                             Descrtiption = "მეოთხე საქმის აღწერა...",
-                            EndDate = new DateTime(2024, 5, 19, 1, 1, 3, 8, DateTimeKind.Local).AddTicks(1407),
+                            EndDate = new DateTime(2024, 5, 25, 0, 36, 58, 874, DateTimeKind.Local).AddTicks(1791),
                             Priority = 1,
-                            StartDate = new DateTime(2024, 5, 12, 1, 1, 3, 8, DateTimeKind.Local).AddTicks(1407),
+                            StartDate = new DateTime(2024, 5, 18, 0, 36, 58, 874, DateTimeKind.Local).AddTicks(1790),
                             Status = 1,
                             Title = "მეოთხე საქმე",
                             UserId = "87746F88-DC38-4756-924A-B95CFF3A1D8A"
@@ -391,9 +397,9 @@ namespace Todo.Data.Migrations
                         {
                             Id = 5,
                             Descrtiption = "მეხუთე საქმის აღწერა...",
-                            EndDate = new DateTime(2024, 5, 15, 1, 1, 3, 8, DateTimeKind.Local).AddTicks(1411),
+                            EndDate = new DateTime(2024, 5, 21, 0, 36, 58, 874, DateTimeKind.Local).AddTicks(1794),
                             Priority = 3,
-                            StartDate = new DateTime(2024, 5, 12, 1, 1, 3, 8, DateTimeKind.Local).AddTicks(1410),
+                            StartDate = new DateTime(2024, 5, 18, 0, 36, 58, 874, DateTimeKind.Local).AddTicks(1794),
                             Status = 1,
                             Title = "მეხუთე საქმე",
                             UserId = "87746F88-DC38-4756-924A-B95CFF3A1D8A"
@@ -402,9 +408,9 @@ namespace Todo.Data.Migrations
                         {
                             Id = 6,
                             Descrtiption = "მეექვსე საქმის აღწერა...",
-                            EndDate = new DateTime(2024, 5, 22, 1, 1, 3, 8, DateTimeKind.Local).AddTicks(1413),
+                            EndDate = new DateTime(2024, 5, 28, 0, 36, 58, 874, DateTimeKind.Local).AddTicks(1797),
                             Priority = 2,
-                            StartDate = new DateTime(2024, 5, 12, 1, 1, 3, 8, DateTimeKind.Local).AddTicks(1413),
+                            StartDate = new DateTime(2024, 5, 18, 0, 36, 58, 874, DateTimeKind.Local).AddTicks(1796),
                             Status = 2,
                             Title = "მეექვსე საქმე",
                             UserId = "87746F88-DC38-4756-924A-B95CFF3A1D8A"
@@ -422,7 +428,7 @@ namespace Todo.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Todo.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -431,7 +437,7 @@ namespace Todo.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Todo.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -446,7 +452,7 @@ namespace Todo.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Todo.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -455,7 +461,7 @@ namespace Todo.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Todo.Entities.ApplicationUser", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -464,11 +470,11 @@ namespace Todo.Data.Migrations
 
             modelBuilder.Entity("Todo.Entities.TodoEntity", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", "IdentityUser")
+                    b.HasOne("Todo.Entities.ApplicationUser", "ApplicationUser")
                         .WithMany()
                         .HasForeignKey("UserId");
 
-                    b.Navigation("IdentityUser");
+                    b.Navigation("ApplicationUser");
                 });
 #pragma warning restore 612, 618
         }

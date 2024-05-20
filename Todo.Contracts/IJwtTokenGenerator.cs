@@ -1,9 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Todo.Entities;
 
 namespace Todo.Contracts
 {
     public interface IJwtTokenGenerator
     {
-        string GenerateToken(IdentityUser applicationUser, IEnumerable<string> roles);
+        string GenerateToken(ApplicationUser applicationUser, IEnumerable<string> roles);
     }
 }

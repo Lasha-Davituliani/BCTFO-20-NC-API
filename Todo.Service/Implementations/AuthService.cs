@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
 using Todo.Contracts;
 using Todo.Data;
+using Todo.Entities;
 using Todo.Models.Identity;
 using Todo.Service.Exceptions;
 
@@ -13,7 +14,7 @@ namespace Todo.Service.Implementations
     public class AuthService : IAuthService
     {
         private readonly ApplicationDbContext _context;
-        private readonly UserManager<IdentityUser> _userManager;
+        private readonly UserManager<ApplicationUser> _userManager;
         private readonly RoleManager<IdentityRole> _roleManager;
         private readonly IJwtTokenGenerator _jwtTokenGenerator;
         private readonly IMapper _mapper;
@@ -21,7 +22,7 @@ namespace Todo.Service.Implementations
         private const string _adminRole = "Admin";
         private const string _customerRole = "Customer";
 
-        public AuthService(ApplicationDbContext context, UserManager<IdentityUser> userManager, RoleManager<IdentityRole> roleManager, IJwtTokenGenerator jwtTokenGenerator, IHttpContextAccessor httpContextAccessor)
+        public AuthService(ApplicationDbContext context, UserManager<ApplicationUser> userManager, RoleManager<IdentityRole> roleManager, IJwtTokenGenerator jwtTokenGenerator, IHttpContextAccessor httpContextAccessor)
         {
             _context = context;
             _userManager = userManager;
@@ -74,7 +75,7 @@ namespace Todo.Service.Implementations
 
         public async Task Register(RegistrationRequestDto registrationRequestDto)
         {
-            IdentityUser user = new()
+            ApplicationUser user = new()
             {
                 UserName = registrationRequestDto.Email,
                 NormalizedUserName = registrationRequestDto.Email.ToUpper(),
@@ -120,7 +121,7 @@ namespace Todo.Service.Implementations
 
         public async Task RegisterAdmin(RegistrationRequestDto registrationRequestDto)
         {
-            IdentityUser user = new()
+            ApplicationUser user = new()
             {
                 UserName = registrationRequestDto.Email,
                 NormalizedUserName = registrationRequestDto.Email.ToUpper(),

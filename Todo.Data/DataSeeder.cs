@@ -89,10 +89,10 @@ namespace Todo.Data
 
         public static void SeedUsers(this ModelBuilder modelBuilder)
         {
-            PasswordHasher<IdentityUser> hasher = new();
+            PasswordHasher<ApplicationUser> hasher = new();
 
-            modelBuilder.Entity<IdentityUser>().HasData(
-                    new IdentityUser()
+            modelBuilder.Entity<ApplicationUser>().HasData(
+                    new ApplicationUser()
                     {
                         Id = "8716071C-1D9B-48FD-B3D0-F059C4FB8031",
                         UserName = "admin@gmail.com",
@@ -108,7 +108,7 @@ namespace Todo.Data
                         LockoutEnabled = true,
                         AccessFailedCount = 0
                     },
-                    new IdentityUser()
+                    new ApplicationUser()
                     {
                         Id = "D514EDC9-94BB-416F-AF9D-7C13669689C9",
                         UserName = "nika@gmail.com",
@@ -124,7 +124,7 @@ namespace Todo.Data
                         LockoutEnabled = true,
                         AccessFailedCount = 0
                     },
-                    new IdentityUser()
+                    new ApplicationUser()
                     {
                         Id = "87746F88-DC38-4756-924A-B95CFF3A1D8A",
                         UserName = "gio@gmail.com",
