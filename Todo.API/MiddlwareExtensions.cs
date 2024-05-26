@@ -21,6 +21,7 @@ namespace Todo.API
         public static void AddBackgroundJobs(this WebApplicationBuilder builder)
         {
             builder.Services.AddHostedService<HelloBackgroundService>();
+            builder.Services.AddHostedService<UserActivityBackground>();
         }
         public static void ConfigureJwtOptions(this WebApplicationBuilder builder) => builder.Services.Configure<JwtOptions>(builder.Configuration.GetSection("ApiSettings:JwtOptions"));
         public static void AddIdentity(this WebApplicationBuilder builder) => builder.Services
